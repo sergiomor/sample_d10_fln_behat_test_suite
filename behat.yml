@@ -1,0 +1,29 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+  extensions:
+    Drupal\MinkExtension:
+      # Guzzle is used as HTTP client. You can configure the Guzzle request
+      # options by setting `browserkit_http.guzzle_request_options`. For
+      # instance the following configuration will disable SSL peer verification:
+      # browserkit_http:
+      #   guzzle_request_options:
+      #     verify: false
+      # See \GuzzleHttp\RequestOptions for all built-in Guzzle request options
+      browserkit_http: ~
+      base_url: http://flnhubwtquj9nxtm.devcloud.acquia-sites.com  # Replace with your site's URL
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: 'drush' 
+      drush:
+        alias: 'local'
+      region_map:
+        header: "#header"
+        main: "#main"
+        footer: "#footer"
